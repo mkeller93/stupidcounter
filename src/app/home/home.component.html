@@ -1,0 +1,17 @@
+<!--<link rel="stylesheet" type="text/css" href="/src/app/home/home.component.css" />-->
+
+<div>
+  <input type="text" [(ngModel)]="name" />
+  <button (click)="add()">add idiot</button>
+</div>
+<div *ngIf="!(users | async)">
+  <loading-indicator message="loading idiots"></loading-indicator>
+</div>
+
+<div class="card" *ngFor="let user of users | async">
+  <div class="card-block">
+    <a [routerLink]="['/detail', user.$key]" class="card-title detail-link">{{user.name}}</a>
+    <h6 class="card-subtitle mb-2 text-muted">stupid count: {{user.stupidCount}}</h6>
+    <button (click)="increaseCount(user)" class="btn btn-primary">+stupid!</button>
+  </div>
+</div>

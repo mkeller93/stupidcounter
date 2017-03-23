@@ -1,0 +1,15 @@
+<div>
+  <a [routerLink]="['/home']">back</a>
+</div>
+<div *ngIf="!user">
+  <loading-indicator message="loading idiot details"></loading-indicator>
+</div>
+<div *ngIf="user">
+  <h2>{{user.name}}</h2>
+  <p>stupid count: {{user.stupidCount}}</p>
+</div>
+
+<div *ngIf="user">
+  <chart key="{{user.statisticKey}}"></chart>
+  <quotes key="{{user.$key}}"></quotes>
+</div>

@@ -1,0 +1,19 @@
+<h3>Quotes</h3>
+<div *ngIf="(quotes | async) && (quotes | async).length == 0" class="alert alert-info" role="alert">
+  <strong>C'Mon!</strong> Enter first stupid quote.
+</div>
+<div *ngFor="let quote of quotes | async">
+  <div class="quote row">
+    <div class="col-10">
+      <span class="align-middle">{{quote.text}} - {{getDate(quote.date)}}</span>
+    </div>
+    <div class="col-2">
+      <vote votes="{{quote.votes}}" (onVote)="voted($event, quote)"></vote>
+    </div>
+  </div>  
+</div>
+
+<div>
+  <input type="text" [(ngModel)]="quote" />
+  <button (click)="addQuote()">submit</button>
+</div>
